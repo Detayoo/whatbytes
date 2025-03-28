@@ -47,7 +47,7 @@ export default function Dashboard() {
             </div>
             <button
               onClick={() => setShowModal(true)}
-              className="bg-[#060a44] text-white px-6 py-2 rounded-lg"
+              className="bg-[#060a44] text-white px-6 py-2 rounded-lg cursor-pointer"
             >
               Update
             </button>

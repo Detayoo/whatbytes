@@ -138,6 +138,7 @@ export const UpdateModal = ({
 
                 <div className="mt-4 flex gap-x-6 justify-end">
                   <button
+                    onClick={closeModal}
                     type="button"
                     className="border border-[#060a44] text-[#060a44] px-6 py-2 rounded-[5px] cursor-pointer"
                   >
