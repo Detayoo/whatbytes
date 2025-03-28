@@ -15,16 +15,18 @@ type FormType = {
 export const UpdateModal = ({
   showModal,
   closeModal,
+  state,
   updateState,
 }: {
   showModal: boolean;
   closeModal: () => void;
+  state: FormType;
   updateState: (state: FormType) => void;
 }) => {
   const initialValues = {
-    rank: "",
-    percentile: "",
-    score: "",
+    rank: state?.rank || "",
+    percentile: state?.percentile || "",
+    score: state?.score || "",
   };
 
   const schema = object().shape({

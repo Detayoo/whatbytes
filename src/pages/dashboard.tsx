@@ -63,6 +63,7 @@ export default function Dashboard() {
       <UpdateModal
         showModal={showModal}
         closeModal={() => setShowModal(false)}
+        state={state}
         updateState={updateState}
       />
     </DashboardLayout>
