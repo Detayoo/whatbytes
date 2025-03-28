@@ -5,15 +5,16 @@ import {
   ComparisonGraph,
   SyllabusAnalysis,
   DashboardLayout,
+  QuestionAnalysis,
 } from "@/components";
 
 export default function Dashboard() {
   return (
     <DashboardLayout>
-      <p className="mb-4">Skill Test</p>
+      <p className="mb-6 text-black">Skill Test</p>
       <div className="flex gap-10">
-        <div className="flex flex-col gap-y-6 w-3/5">
-          <div className="flex justify-between items-center mb-6 py-3 px-4 rounded-[4px] border border-gray-200">
+        <div className="flex flex-col gap-y-1 w-3/5">
+          <div className="flex justify-between items-center mb-6 py-4 px-4 rounded-[6px] border border-gray-200">
             <div className="flex items-center">
               <Image
                 src="/images/html5.png"
@@ -23,7 +24,7 @@ export default function Dashboard() {
                 className="mr-4"
               />
               <div>
-                <h1 className="font-bold text-black">
+                <h1 className="font-semibold text-black text-[17px]">
                   Hyper Text Markup Language
                 </h1>
                 <p className="text-gray-600">
@@ -36,10 +37,11 @@ export default function Dashboard() {
             </button>
           </div>
           <QuickStats />
-          <ComparisonGraph />
+          <ComparisonGraph percentile={80} />
         </div>
-        <div className="flex flex-co gap-y-6">
+        <div className="flex-1 flex flex-col gap-y-6">
           <SyllabusAnalysis />
+          <QuestionAnalysis />
         </div>
       </div>
     </DashboardLayout>

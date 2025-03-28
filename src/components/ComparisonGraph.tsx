@@ -1,55 +1,157 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { Chart, registerables } from "chart.js";
+import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 
-Chart.register(...registerables);
+interface ComparisonGraphProps {
+  percentile: number;
+}
 
-export const ComparisonGraph = () => {
-  const chartRef = useRef<HTMLCanvasElement>(null);
+export const ComparisonGraph = ({ percentile }: ComparisonGraphProps) => {
+  const [chartOptions, setChartOptions] = useState<any>(null);
+  const [chartSeries, setChartSeries] = useState<any[]>([]);
+
+  const generateNormalDistribution = (
+    mean: number,
+    stdDev: number,
+    size: number
+  ) => {
+    const data: number[] = [];
+    for (let x = 0; x < size; x++) {
+      const scaledX = (x / (size - 1)) * 100;
+      const exponent = -Math.pow(scaledX - mean, 2) / (2 * Math.pow(stdDev, 2));
+      const y = (1 / (stdDev * Math.sqrt(2 * Math.PI))) * Math.exp(exponent);
+      data.push(y * 1000);
+    }
+    return data;
+  };
+
+  const getXFromPercentile = (percentile: number, size: number) => {
+    return percentile;
+  };
 
   useEffect(() => {
-    if (chartRef.current) {
-      const ctx = chartRef.current.getContext("2d");
-      if (ctx) {
-        new Chart(ctx, {
-          type: "line",
-          data: {
-            labels: Array.from({ length: 100 }, (_, i) => (i + 1).toString()),
-            datasets: [
-              {
-                label: "Percentile Distribution",
-                data: Array.from(
-                  { length: 100 },
-                  (_, i) => Math.sin(i / 10) * 10 + 50
-                ), // Dummy data
-                borderColor: "#007bff",
-                fill: false,
+    const data = generateNormalDistribution(72, 15, 15);
+
+    const xValues = Array.from({ length: 15 }, (_, i) => (i / (15 - 1)) * 100);
+
+    setChartSeries([
+      {
+        name: "Percentile Distribution",
+        data: data.map((y, i) => ({ x: xValues[i], y })),
+      },
+    ]);
+
+    setChartOptions({
+      chart: {
+        type: "line",
+        height: 150,
+        toolbar: {
+          show: false,
+        },
+        zoom: {
+          enabled: false, // Disable zooming
+        },
+        animations: {
+          enabled: false, // Disable animations to prevent any zoom-like effects
+        },
+        events: {
+          mouseMove: () => false, // Prevent mouse move events from triggering zoom
+          mouseWheel: () => false, // Prevent mouse wheel from triggering zoom
+          click: () => false, // Prevent clicks from triggering any actions
+        },
+      },
+      stroke: {
+        curve: "smooth",
+        width: 1,
+        colors: ["#ccc"],
+      },
+      markers: {
+        size: 3,
+        colors: ["#ccc"],
+        strokeColors: ["#ccc"],
+        hover: {
+          size: 5,
+        },
+      },
+      xaxis: {
+        min: 0,
+        max: 100,
+        tickAmount: 4,
+        labels: {
+          formatter: (value: number) => {
+            if ([0, 25, 50, 75, 100].includes(value)) {
+              return value;
+            }
+            return "";
+          },
+        },
+        axisBorder: {
+          show: true,
+        },
+        axisTicks: {
+          show: true,
+        },
+      },
+      yaxis: {
+        show: false,
+      },
+      grid: {
+        show: false,
+      },
+      tooltip: {
+        enabled: true, // Enable tooltips
+        x: {
+          formatter: (value: number) => `${value}%`, // Show the x-value (percentile) with a % sign
+        },
+        y: {
+          formatter: () => "", // Hide the y-value since it's not relevant
+        },
+        marker: {
+          show: false,
+        },
+        style: {
+          fontSize: "12px",
+        },
+      },
+      annotations: {
+        xaxis: [
+          {
+            x: getXFromPercentile(percentile, 15),
+            borderColor: "#cccccc",
+            strokeDashArray: 5,
+            label: {
+              borderColor: "transparent",
+              style: {
+                color: "#cccccc",
+                background: "transparent",
               },
-            ],
-          },
-          options: {
-            scales: {
-              x: { display: false },
-              y: { display: false },
-            },
-            plugins: {
-              legend: { display: false },
+              text: "your percentile",
+              position: "top",
+              offsetY: -10,
             },
           },
-        });
-      }
-    }
-  }, []);
+        ],
+      },
+    });
+  }, [percentile]);
 
   return (
-    <div className="bg-white p-6 mb-6 py-3 px-4 rounded-[4px] border border-gray-200">
+    <div className="bg-white p-6 rounded-lg px-4 py-6 border border-gray-200">
       <h3 className="text-lg font-semibold mb-4">Comparison Graph</h3>
       <p className="text-gray-600 mb-4">
-        You scored 30% percentile which is lower than the average percentile 72%
-        of all the engineers who took this assessment
+        You scored {percentile ?? 0}% percentile which is lower than the average
+        percentile 72% of all the engineers who took this assessment
       </p>
-      <canvas ref={chartRef} className="w-full h-32"></canvas>
+      {chartOptions && chartSeries.length > 0 && (
+        <Chart
+          options={chartOptions}
+          series={chartSeries}
+          type="line"
+          height={400}
+        />
+      )}
     </div>
   );
 };

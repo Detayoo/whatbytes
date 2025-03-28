@@ -6,8 +6,10 @@ import {
 
 export const QuickStats = () => {
   return (
-    <div className="bg-white p-6 mb-6 py-3 px-4 rounded-[4px] border border-gray-200">
-      <h3 className="text-black font-semibold mb-4">Quick Statistics</h3>
+    <div className="bg-white p-6 mb-6 py-3 px-4 rounded-[6px] border border-gray-200">
+      <h3 className="text-black text-[17px] font-semibold mb-4">
+        Quick Statistics
+      </h3>
       <div className="grid grid-cols-3 gap-4 text-center">
         <div className="flex gap-x-3">
           <div className="bg-gray-200 border border-gray-300 w-12 h-12 flex justify-center items-center rounded-[50%]">
