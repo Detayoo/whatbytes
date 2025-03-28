@@ -1,5 +1,3 @@
-import React from "react";
-
 export const ModalContainer = ({
   children,
   showModal,
@@ -8,7 +6,7 @@ export const ModalContainer = ({
   children: any;
   showModal: boolean;
   closeModal: () => void;
-}): JSX.Element => {
+}) => {
   return (
     <div
       className={`fixed top-0 left-0 z-[30] w-full h-screen flex justify-center items-center animation ${

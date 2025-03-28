@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useState } from "react";
 
 import {
   QuickStats,
@@ -6,9 +7,11 @@ import {
   SyllabusAnalysis,
   DashboardLayout,
   QuestionAnalysis,
+  UpdateModal,
 } from "@/components";
 
 export default function Dashboard() {
+  const [showModal, setShowModal] = useState(false);
   return (
     <DashboardLayout>
       <p className="mb-6 text-black">Skill Test</p>
@@ -32,7 +35,10 @@ export default function Dashboard() {
                 </p>
               </div>
             </div>
-            <button className="bg-[#060a44] text-white px-6 py-2 rounded-lg">
+            <button
+              onClick={() => setShowModal(true)}
+              className="bg-[#060a44] text-white px-6 py-2 rounded-lg"
+            >
               Update
             </button>
           </div>
@@ -44,6 +50,10 @@ export default function Dashboard() {
           <QuestionAnalysis />
         </div>
       </div>
+      <UpdateModal
+        showModal={showModal}
+        closeModal={() => setShowModal(false)}
+      />
     </DashboardLayout>
   );
 }
