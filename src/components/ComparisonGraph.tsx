@@ -43,7 +43,7 @@ export const ComparisonGraph = () => {
   }, []);
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-md mb-6">
+    <div className="bg-white p-6 mb-6 py-3 px-4 rounded-[4px] border border-gray-200">
       <h3 className="text-lg font-semibold mb-4">Comparison Graph</h3>
       <p className="text-gray-600 mb-4">
         You scored 30% percentile which is lower than the average percentile 72%
