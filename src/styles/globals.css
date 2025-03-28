@@ -30,3 +30,9 @@ body {
   --color-danger: #dc3545;
   --color-warning: #ffc107;
 }
+
+  .animation {
+    transition: all 0.3s ease-in-out;
+  }
+
+
