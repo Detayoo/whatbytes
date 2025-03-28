@@ -51,15 +51,15 @@ export const ComparisonGraph = ({ percentile }: ComparisonGraphProps) => {
           show: false,
         },
         zoom: {
-          enabled: false, // Disable zooming
+          enabled: false,
         },
         animations: {
-          enabled: false, // Disable animations to prevent any zoom-like effects
+          enabled: false,
         },
         events: {
-          mouseMove: () => false, // Prevent mouse move events from triggering zoom
-          mouseWheel: () => false, // Prevent mouse wheel from triggering zoom
-          click: () => false, // Prevent clicks from triggering any actions
+          mouseMove: () => false,
+          mouseWheel: () => false, 
+          click: () => false,
         },
       },
       stroke: {
@@ -101,12 +101,12 @@ export const ComparisonGraph = ({ percentile }: ComparisonGraphProps) => {
         show: false,
       },
       tooltip: {
-        enabled: true, // Enable tooltips
+        enabled: true,
         x: {
-          formatter: (value: number) => `${value}%`, // Show the x-value (percentile) with a % sign
+          formatter: (value: number) => `${value}%`,
         },
         y: {
-          formatter: () => "", // Hide the y-value since it's not relevant
+          formatter: () => "",
         },
         marker: {
           show: false,
@@ -139,10 +139,15 @@ export const ComparisonGraph = ({ percentile }: ComparisonGraphProps) => {
 
   return (
     <div className="bg-white p-6 rounded-lg px-4 py-6 border border-gray-200">
-      <h3 className="text-lg font-semibold mb-4">Comparison Graph</h3>
+      <h3 className="text-[17px] font-semibold mb-4 text-black">
+        Comparison Graph
+      </h3>
       <p className="text-gray-600 mb-4">
-        You scored {percentile ?? 0}% percentile which is lower than the average
-        percentile 72% of all the engineers who took this assessment
+        <span className="font-semibold">
+          You scored {percentile ?? 0}% percentile
+        </span>{" "}
+        which is lower than the average percentile 72% of all the engineers who
+        took this assessment
       </p>
       {chartOptions && chartSeries.length > 0 && (
         <Chart

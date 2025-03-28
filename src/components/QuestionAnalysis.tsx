@@ -2,16 +2,14 @@
 
 import { useEffect, useState } from "react";
 
-export const QuestionAnalysis = () => {
+export const QuestionAnalysis = ({ score }: { score: number }) => {
   const [percentage, setPercentage] = useState<number>(0);
 
-  // Calculate the percentage: (10/15) * 100 = 66.67%, rounded to 67%
   useEffect(() => {
-    const correct = 10;
     const total = 15;
-    const calculatedPercentage = Math.round((correct / total) * 100);
+    const calculatedPercentage = Math.round((score / total) * 100);
     setPercentage(calculatedPercentage);
-  }, []);
+  }, [score]);
 
   const radius = 60;
   const circumference = 2 * Math.PI * radius;
@@ -21,11 +19,11 @@ export const QuestionAnalysis = () => {
     <div className="bg-white p-6 rounded-[6px] mt-6 border border-gray-200">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-black font-semibold">Question Analysis</h3>
-        <span className="font-semibold text-primary">10/15</span>
+        <span className="font-semibold text-primary">{score || 0}/15</span>
       </div>
       <p className="text-gray-600 text-left">
-        You scored 10 questions correct out of 15. However it still needs some
-        improvements.
+        You scored {score || 0} questions correct out of 15. However it still
+        needs some improvements.
       </p>
 
       <div className="flex justify-center mt-8">

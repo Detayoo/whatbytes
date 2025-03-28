@@ -6,12 +6,20 @@ import { object, string } from "yup";
 import { ModalContainer } from "./ModalContainer";
 import { TextField } from "./TextField";
 
+type FormType = {
+  rank: string;
+  percentile: string;
+  score: string;
+};
+
 export const UpdateModal = ({
   showModal,
   closeModal,
+  updateState,
 }: {
   showModal: boolean;
   closeModal: () => void;
+  updateState: (state: FormType) => void;
 }) => {
   const initialValues = {
     rank: "",
@@ -66,7 +74,10 @@ export const UpdateModal = ({
         <Formik
           enableReinitialize
           initialValues={initialValues}
-          onSubmit={() => {}}
+          onSubmit={(values) => {
+            updateState(values);
+            closeModal();
+          }}
           validationSchema={schema}
         >
           {({ values, errors, setFieldValue, touched }) => {

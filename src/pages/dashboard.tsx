@@ -12,6 +12,16 @@ import {
 
 export default function Dashboard() {
   const [showModal, setShowModal] = useState(false);
+  const [state, setState] = useState({
+    rank: "",
+    percentile: "",
+    score: "",
+  });
+
+  const updateState = (payload: Partial<typeof state>) => {
+    setState((prev) => ({ ...prev, ...payload }));
+  };
+
   return (
     <DashboardLayout>
       <p className="mb-6 text-black">Skill Test</p>
@@ -42,17 +52,18 @@ export default function Dashboard() {
               Update
             </button>
           </div>
-          <QuickStats />
-          <ComparisonGraph percentile={80} />
+          <QuickStats state={state} />
+          <ComparisonGraph percentile={+state?.percentile || 0} />
         </div>
         <div className="flex-1 flex flex-col gap-y-6">
           <SyllabusAnalysis />
-          <QuestionAnalysis />
+          <QuestionAnalysis score={+state?.score || 0} />
         </div>
       </div>
       <UpdateModal
         showModal={showModal}
         closeModal={() => setShowModal(false)}
+        updateState={updateState}
       />
     </DashboardLayout>
   );

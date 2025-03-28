@@ -4,7 +4,9 @@ import {
   CheckCircleIcon,
 } from "@heroicons/react/24/outline";
 
-export const QuickStats = () => {
+import { State } from "../../types";
+
+export const QuickStats = ({ state }: { state: State }) => {
   return (
     <div className="bg-white p-6 mb-6 py-3 px-4 rounded-[6px] border border-gray-200">
       <h3 className="text-black text-[17px] font-semibold mb-4">
@@ -16,7 +18,9 @@ export const QuickStats = () => {
             <TrophyIcon className="w-6 h-6 text-gray-600" />
           </div>
           <div className="flex flex-col gap-y-1 items-start">
-            <span className="text-2xl text-black font-bold">1</span>
+            <span className="text-2xl text-black font-bold">
+              {state?.rank || 0}
+            </span>
             <p className="text-gray-600 text-[12px]">YOUR RANK</p>
           </div>
         </div>
@@ -26,7 +30,9 @@ export const QuickStats = () => {
             <ChartBarIcon className="w-6 h-6 text-gray-600" />
           </div>
           <div className="flex flex-col gap-y-1 items-start">
-            <span className="text-2xl text-black font-bold">30%</span>
+            <span className="text-2xl text-black font-bold">
+              {state?.percentile || 0}%
+            </span>
             <p className="text-gray-600 text-[12px]">PERCENTILE</p>
           </div>
         </div>
@@ -36,7 +42,9 @@ export const QuickStats = () => {
             <CheckCircleIcon className="w-6 h-6 text-gray-600" />
           </div>
           <div className="flex flex-col gap-y-1 items-start">
-            <span className="text-2xl text-black font-bold">10/15</span>
+            <span className="text-2xl text-black font-bold">
+              {state?.score || 0}/15
+            </span>
             <p className="text-gray-600 text-[12px]">CORRECT ANSWERS</p>
           </div>
         </div>
