@@ -5,8 +5,6 @@ export const TextField = ({
   placeholder,
   divClass,
   textClass,
-  labelClass,
-  borderClass,
   value,
   maxlength,
   disabled,
@@ -19,8 +17,6 @@ export const TextField = ({
   placeholder?: string;
   divClass?: string;
   textClass?: string;
-  labelClass?: string;
-  borderClass?: string;
   maxlength?: string;
   disabled?: boolean;
 }) => (

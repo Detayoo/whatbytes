@@ -27,7 +27,7 @@ export const ComparisonGraph = ({ percentile }: ComparisonGraphProps) => {
     return data;
   };
 
-  const getXFromPercentile = (percentile: number, size: number) => {
+  const getXFromPercentile = (percentile: number) => {
     return percentile;
   };
 
@@ -58,7 +58,7 @@ export const ComparisonGraph = ({ percentile }: ComparisonGraphProps) => {
         },
         events: {
           mouseMove: () => false,
-          mouseWheel: () => false, 
+          mouseWheel: () => false,
           click: () => false,
         },
       },
@@ -118,7 +118,7 @@ export const ComparisonGraph = ({ percentile }: ComparisonGraphProps) => {
       annotations: {
         xaxis: [
           {
-            x: getXFromPercentile(percentile, 15),
+            x: getXFromPercentile(percentile),
             borderColor: "#cccccc",
             strokeDashArray: 5,
             label: {

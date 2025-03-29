@@ -82,7 +82,7 @@ export const UpdateModal = ({
           }}
           validationSchema={schema}
         >
-          {({ values, errors, setFieldValue, touched }) => {
+          {({ values, errors, touched }) => {
             return (
               <Form
                 autoComplete="off"
