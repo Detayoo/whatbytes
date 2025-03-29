@@ -1,6 +1,6 @@
 import { DashboardLayout } from "@/components";
 
-const Dashboard = () => {
+const Internship = () => {
   return (
     <DashboardLayout>
       <div></div>
@@ -8,4 +8,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Internship;
