@@ -10,7 +10,7 @@ export const DashboardLayout = ({
     <div lang="en font-mono">
       <div className="flex flex-col w-full h-screen bg-white">
         <Header />
-        <div className="flex">
+        <div className="flex h-[88vh]">
           <Sidebar />
           <main className="flex-1 p-6 overflow-y-auto">{children}</main>
         </div>
