@@ -25,8 +25,8 @@ export default function Dashboard() {
   return (
     <DashboardLayout>
       <p className="mb-6 text-black">Skill Test</p>
-      <div className="flex gap-10">
-        <div className="flex flex-col gap-y-1 w-3/5">
+      <div className="flex flex-col lg:flex-row gap-10">
+        <div className="flex flex-col gap-y-1 w-full lg:w-3/5">
           <div className="flex justify-between items-center mb-6 py-4 px-4 rounded-[6px] border border-gray-200">
             <div className="flex items-center">
               <Image

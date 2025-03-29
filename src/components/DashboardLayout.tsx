@@ -1,5 +1,5 @@
 // import "./globals.css";
-import { Sidebar } from "@/components";
+import { Header, Sidebar } from "@/components";
 
 export const DashboardLayout = ({
   children,
@@ -8,9 +8,12 @@ export const DashboardLayout = ({
 }>) => {
   return (
     <div lang="en font-mono">
-      <div className="flex h-screen bg-white">
-        <Sidebar />
-        <main className="flex-1 p-6 overflow-auto">{children}</main>
+      <div className="flex flex-col w-full h-screen bg-white">
+        <Header />
+        <div className="flex">
+          <Sidebar />
+          <main className="flex-1 p-6 overflow-y-auto">{children}</main>
+        </div>
       </div>
     </div>
   );
