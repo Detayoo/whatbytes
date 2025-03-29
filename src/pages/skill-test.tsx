@@ -41,7 +41,7 @@ export default function SkillTest() {
                   Hyper Text Markup Language
                 </h1>
                 <p className="text-gray-600">
-                  Questions: 08 | Duration: 15 mins | Submitted on 5 June 2021
+                  Questions: 08 | Duration: 15 mins | Submitted on 29 March 2025
                 </p>
               </div>
             </div>

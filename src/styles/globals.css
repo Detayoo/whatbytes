@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap");
 
 @theme {
   --color-primary: #007bff;
@@ -13,6 +14,10 @@
   --breakpoint-sm: 888px;
   --breakpoint-2xs: 640px;
   --breakpoint-xs: 400px;
+}
+
+body {
+  font-family: "Geist", sans-serif;
 }
 
 .animation {
