@@ -127,7 +127,7 @@ export const UpdateModal = ({
                     <p>
                       Update your{" "}
                       <span className="font-semibold">
-                        Current Score (Out of 15)
+                        Correct Score (Out of 15)
                       </span>
                     </p>
                   </div>
